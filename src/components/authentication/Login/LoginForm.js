@@ -1,25 +1,24 @@
 import { useRef, useState } from "react";
 
-import Card from "../UI/Card";
-import LoadingSpinner from "../UI/LoadingSpinner";
-import classes from "./QuoteForm.module.css";
+import Card from "../../UI/Card";
+import LoadingSpinner from "../../UI/LoadingSpinner";
+import classes from "./LoginForm.module.css";
 
-const QuoteForm = (props) => {
+const LoginForm = (props) => {
   // eslint-disable-next-line
   const [isEntering, setIsEntering] = useState(false);
 
-  const authorInputRef = useRef();
-  const textInputRef = useRef();
+  const loginInputRef = useRef();
+  const passwordInputRef = useRef();
 
   function submitFormHandler(event) {
     event.preventDefault();
 
-    const enteredAuthor = authorInputRef.current.value;
-    const enteredText = textInputRef.current.value;
+    const enteredLogin = loginInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
 
     // optional: Could validate here
-
-    props.onAddQuote({ author: enteredAuthor, text: enteredText });
+    props.onLogin({ login: enteredLogin, password: enteredPassword });
   }
 
   const formFocusedHandler = () => {
@@ -45,16 +44,21 @@ const QuoteForm = (props) => {
           )}
 
           <div className={classes.control}>
-            <label htmlFor="author">Author</label>
-            <input type="text" id="author" ref={authorInputRef} />
+            <label htmlFor="login">Login</label>
+            <input type="text" id="login" ref={loginInputRef} required />
           </div>
           <div className={classes.control}>
-            <label htmlFor="text">Text</label>
-            <textarea id="text" rows="5" ref={textInputRef}></textarea>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              ref={passwordInputRef}
+              required
+            />
           </div>
           <div className={classes.actions}>
             <button onClick={finishEnteringHandler} className="btn">
-              Add Quote
+              Login
             </button>
           </div>
         </form>
@@ -63,4 +67,4 @@ const QuoteForm = (props) => {
   );
 };
 
-export default QuoteForm;
+export default LoginForm;
