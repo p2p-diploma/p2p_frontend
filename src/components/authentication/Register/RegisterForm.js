@@ -22,7 +22,7 @@ const RegisterForm = (props) => {
     // optional: Could validate here
     props.onRegister({
       email: enteredLogin,
-      fullname: enteredFullName,
+      full_name: enteredFullName,
       password: enteredPassword,
     });
   }

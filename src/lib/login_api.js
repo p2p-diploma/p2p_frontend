@@ -1,11 +1,22 @@
 import "dotenv/config";
 
 export async function login(loginData) {
+  let formBody = [];
+  for (let property in loginData) {
+    let encodedKey = encodeURIComponent(property);
+    let encodedValue = encodeURIComponent(loginData[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+
+  formBody = formBody.join("&");
+
+  console.log(formBody);
+
   const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/login`, {
     method: "POST",
-    body: JSON.stringify(loginData),
+    body: formBody,
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
     },
   });
   const data = await response.json();
@@ -18,7 +29,7 @@ export async function login(loginData) {
 }
 
 export async function register(registerData) {
-  const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/signup`, {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_API}`, {
     method: "POST",
     body: JSON.stringify(registerData),
     headers: {
