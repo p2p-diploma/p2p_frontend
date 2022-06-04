@@ -1,0 +1,6 @@
+.details{
+    position: relative; max-width: 50%; left: 25%;
+}
+.details h4{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', Geneva, Verdana, sans-serif;
+}

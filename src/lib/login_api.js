@@ -18,6 +18,7 @@ export async function login(loginData) {
 }
 
 export async function register(registerData) {
+  alert(JSON.stringify(registerData));
   const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/signup`, {
     method: "POST",
     body: JSON.stringify(registerData),
