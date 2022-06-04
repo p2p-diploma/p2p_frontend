@@ -1,0 +1,9 @@
+h3{
+    text-align: end;
+}
+.prev, .next{
+    cursor: not-allowed;
+}
+.page-item{
+    cursor: pointer;
+}

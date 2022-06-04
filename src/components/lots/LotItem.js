@@ -1,32 +1,15 @@
-import { Link } from "react-router-dom";
-
-import classes from "./LotItem.module.css";
-import LimitObject from "./LimitObject";
-import PaymentObject from "./PaymentObject";
-
-const LotItem = (props) => {
-  return (
-    <tr>
-      <td>{props.seller_id}</td>
-      <td>{props.price} KZT</td>
+export const LotItem = () => {
+    return <tr>
+      <th className="text-success lead" scope="row">Trader 1</th>
+      <td><b style="font-size: 1.3em">120000 KZT</b></td>
       <td>
-        <LimitObject
-          supply={props.supply}
-          min_limit={props.min_limit}
-          max_limit={props.max_limit}
-          currency={props.currency}
-        />
+          <div className="row"><div className="col-md-6"><b>Available:</b></div><div className="col-md-6 text-large">0.51 ETH</div></div>
+          <div className="row"><div className="col-md-6"><b>Limit:</b></div><div className="col-md-6 text-large">0 - 3.48 ETH</div></div>
       </td>
       <td>
-        <PaymentObject payments={props.payment} />
+          <img className="pr-5" style="max-width: 30px;" src="https://play-lh.googleusercontent.com/VzuwBDTtj6qCoJWIxikZAJ8Y5I1YGdlxzWhUo3-Xe51J7p_vD-RYtmpb0ffmh64iWeg" />
+          <img style="max-width: 30px;" src="https://yt3.ggpht.com/31UROWnFyNpEtqLoybpTgL0_vv_kE4IU6V6n2tRaaW8AiI1gbdQx64kfBgmZAKNTuQtZ_g3lNw=s900-c-k-c0x00ffffff-no-rj" />
       </td>
-      <td className={classes["flex-td"]}>
-        <Link to={`/lot/${props.id}`} className={classes.btn}>
-          {props.lot_type}
-        </Link>
-      </td>
-    </tr>
-  );
-};
-
-export default LotItem;
+      <td><button type="button" className="btn btn-success d-block">Buy ETH</button></td>
+            </tr>;
+}
