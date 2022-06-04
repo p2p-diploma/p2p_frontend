@@ -18,7 +18,7 @@ const LoginForm = (props) => {
     const enteredPassword = passwordInputRef.current.value;
 
     // optional: Could validate here
-    props.onLogin({ login: enteredLogin, password: enteredPassword });
+    props.onLogin({ username: enteredLogin, password: enteredPassword });
   }
 
   const formFocusedHandler = () => {
