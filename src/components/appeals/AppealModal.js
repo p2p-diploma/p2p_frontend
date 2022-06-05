@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import { fetchAppealById, fetchReceiptById, deleteAppeal } from "../../lib/appeals_api";
+import { fetchAppealById, fetchReceiptById, deleteAppeal, freezeWallet } from "../../lib/appeals_api";
 import 'dotenv/config';
 let download = require('downloadjs');
 export default function AppealModal(props) {
     const [appeal, setAppeal] = useState(null);
     const [err, setError] = useState(false);
+    const [freezeMessage, setFreezeMessage] = useState(false);
     const fetchAppeal = useCallback(() => {
         fetchAppealById(props.id).then(a => {
             setAppeal(a);
@@ -18,6 +19,12 @@ export default function AppealModal(props) {
     const downloadReceipt = () => {
         fetchReceiptById(appeal.receiptId).then(receipt => {
             download(receipt, appeal.buyerEmail + '_receipt.pdf', 'application/pdf');
+        });
+    }
+
+    const freezeSellerWallet = () => {
+        freezeWallet(appeal.sellerEmail).then(response => {
+            setFreezeMessage(response);
         });
     }
 
@@ -48,9 +55,10 @@ export default function AppealModal(props) {
                             <div className="col-lg-6" id="seller">
                                 <h3 className="text-primary">Seller</h3>
                                 <b className="d-block mb-3">{appeal.sellerEmail}</b>
-                                <button type="button" className="btn btn-outline-danger">Freeze wallet</button>
+                                <button onClick={freezeSellerWallet} type="button" className="btn btn-outline-danger">Freeze wallet</button>
                             </div>
                             {err && <div className="text-danger lead" id="appealError">Failed to delete appeal</div>}
+                            {freezeMessage && <div className="text-danger lead" id="appealError">Failed to freeze wallet</div>}
                         </div>
                         <div className="details mt-5">
                             <h4 className="mb-3">Transaction details: </h4>

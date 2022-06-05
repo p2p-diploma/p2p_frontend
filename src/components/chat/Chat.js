@@ -1,4 +1,4 @@
-export default function Chat(){
+export default function Chat(props){
 
     function chat(){
         const hubConnection = new signalR.HubConnectionBuilder()
@@ -6,7 +6,6 @@ export default function Chat(){
             .build();
  
         hubConnection.on("Send", function (data) {
- 
             let elem = document.createElement("p");
             elem.appendChild(document.createTextNode(data));
             let firstElem = document.getElementById("chatroom").firstChild;
@@ -16,10 +15,10 @@ export default function Chat(){
  
         document.getElementById("sendBtn").addEventListener("click", function (e) {
             let message = document.getElementById("message").value;
-            hubConnection.invoke("AddToChat", "1");
             hubConnection.invoke("Send", message, "username");
         });
         hubConnection.start();
+        hubConnection.invoke("AddToChat", props.transactionId);
     }
 
 
