@@ -9,7 +9,7 @@ export const LotItem = (props) => {
           <div className="row"><div className="col-md-4">Limit:</div>
           <div className="col-md-8 text-large limit">{props.lot.min_limit} - {props.lot.max_limit} KZT</div></div>
       </td>
-      <td className={props.lot.payment.length > 1 && 'd-flex justify-content-between flex-wrap'}>
+      <td className={props.lot.payment.length > 1 ? 'd-flex justify-content-between flex-wrap' : ''}>
         {props.lot.payment.map(p => {
             switch(p.bank_name) {
                 case "Kaspi":

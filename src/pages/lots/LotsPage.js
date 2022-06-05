@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import { LotsList } from "../../components/lots/LotsList";
 import LotsFilter from "../../components/lots/LotsFilter";
 
 export default function LotsPage(){
@@ -9,7 +8,6 @@ export default function LotsPage(){
 
   <main className="bg-light container">
       <LotsFilter />
-      <LotsList />
   </main>
   </Fragment>
   );
