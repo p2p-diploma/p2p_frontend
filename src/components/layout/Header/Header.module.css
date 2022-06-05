@@ -1,13 +1,13 @@
 .header {
   width: 100%;
   height: 5rem;
-  display: flex;
-  padding: 0 10%;
-  justify-content: space-between;
+  padding: 0 5%;
   align-items: center;
   background-color: #010202;
 }
-
+.header img {
+  max-width: 50px;
+}
 .logo {
   font-size: 2rem;
   color: white;

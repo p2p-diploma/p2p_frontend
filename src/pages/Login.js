@@ -18,10 +18,10 @@ const Login = () => {
     if (status === "completed" && error !== null) {
       console.log(error);
     }
-  }, [status, navigate]);
+  }, [status, navigate, error]);
 
   const loginHandler = (loginData) => {
-    sendRequest(loginData);
+    sendRequest(loginData).then(r => window.location.href = '/lots');
   };
 
   return <LoginForm isLoading={status === "pending"} onLogin={loginHandler} />;
