@@ -23,11 +23,7 @@ export async function getAllQuotes() {
 }
 
 
-export async function fetchLots() {
-  const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/lot`, {credentials: 'include'});
+export async function fetchLots(page) {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/lot?page=${page}`);
   return await response.json();
-}
-export async function fetchLotsCount(){
-  const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/lot/count`, {credentials: 'include'});
-  return parseInt(response.text());
 }

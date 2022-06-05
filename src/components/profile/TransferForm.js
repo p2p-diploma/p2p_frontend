@@ -42,11 +42,11 @@ export default function TransferForm(props) {
 
     return <div className="accordion-item">
         <h2 className="accordion-header" id="headingOne">
-            <button className="accordion-button bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <button className="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 Transfer to P2P
             </button>
         </h2>
-        <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div id="collapseOne" className="accordion-collapse collapse collapsed" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             {transferStatus.ok && <p className='text-success'>{transferStatus.message}</p>}
             {!transferStatus.ok && <p className='text-danger'>{transferStatus.message}</p>}
             <form onSubmit={transferToP2P} id="transferToP2P" className="accordion-body">

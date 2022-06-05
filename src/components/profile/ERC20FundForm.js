@@ -28,11 +28,11 @@ export default function ERC20FundForm(props) {
 
     return <div className="accordion-item">
         <h2 className="accordion-header" id="headingOne">
-            <button className="accordion-button bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
+            <button className="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
                 Fund P2P (ERC20)
             </button>
         </h2>
-        <div id="collapseFour" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div id="collapseFour" className="accordion-collapse collapse collapsed" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             {transferStatus.ok && <p className='text-success'>{transferStatus.message}</p>}
             {!transferStatus.ok && <p className='text-danger'>{transferStatus.message}</p>}
             <small className='text-warning'>Warning! For transferring and refunding ERC20 tokens you need to have some ETH on 
