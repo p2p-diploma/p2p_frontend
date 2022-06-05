@@ -14,6 +14,7 @@ import Layout from "./components/layout/Layout";
 import Comments from "./components/comments/Comments";
 import Wallet from "./components/profile/Wallet";
 import AppealsPage from "./pages/appeals/AppealsPage";
+import TradePage from "./pages/trade/TradePage";
 
 function App() {
   return (
@@ -21,11 +22,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate replace to="/lots" />} />
         <Route path="/user" element={<Wallet />} />
-        <Route path="/appeals" element={<AppealsPage />}/>
+        <Route path="/appeals" element={<AppealsPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
         <Route path="/lots" element={<LotsPage />} />
+        <Route path="/lots/:lotId/:tradeId" element={<TradePage />} />
 
         <Route path="/quotes" element={<AllQuotes />} />
         <Route path="/quotes/:quoteId" element={<QuoteDetail />}>

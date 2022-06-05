@@ -4,8 +4,6 @@ import classes from "./MainNavigation.module.css";
 import LoggedNavigation from "./LoggedNavigation";
 import NotLoggedNavigaion from "./NotLoggedNavigation";
 
-console.log(Cookies.get("jwt-refresh"));
-
 const MainNavigation = () => {
   return (
     <nav className={classes.nav}>

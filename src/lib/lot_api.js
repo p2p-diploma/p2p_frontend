@@ -1,29 +1,26 @@
 import "dotenv/config";
 
-export async function getAllQuotes() {
-  const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/lot`);
+export async function fetchLots(page) {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_API}/lot?page=${page}`
+  );
+  return await response.json();
+}
+
+export async function getLotDetail(lotId) {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_API}/lot/detail/${lotId}`,
+    {
+      withCredenitals: true,
+      credentials: "include",
+    }
+  );
+
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not fetch quotes.");
+    throw new Error(data.message || "Could not fetch trade");
   }
 
-  const transformedQuotes = [];
-
-  for (const key in data) {
-    const quoteObj = {
-      id: key,
-      ...data[key],
-    };
-
-    transformedQuotes.push(quoteObj);
-  }
-
-  return transformedQuotes;
-}
-
-
-export async function fetchLots(page) {
-  const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/lot?page=${page}`);
-  return await response.json();
+  return data;
 }

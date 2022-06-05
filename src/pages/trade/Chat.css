@@ -1,0 +1,22 @@
+.me {
+  background-color: #dcf8c6;
+  float: right;
+  margin-bottom: 20px;
+  width: 75%;
+}
+
+.chatter {
+  background-color: whitesmoke;
+  float: left;
+  margin-bottom: 20px;
+  width: 75%;
+}
+
+.chat {
+  background-color: #ece5dd;
+}
+
+.head {
+  background-color: #128c7e;
+  color: white;
+}
