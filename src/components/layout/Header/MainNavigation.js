@@ -1,18 +1,18 @@
 import Cookies from "js-cookie";
-
-import classes from "./MainNavigation.module.css";
 import LoggedNavigation from "./LoggedNavigation";
 import NotLoggedNavigaion from "./NotLoggedNavigation";
 
 const MainNavigation = () => {
   return (
-    <nav className={classes.nav}>
-      {Cookies.get("jwt-access") && Cookies.get("jwt-refresh") ? (
+      Cookies.get("jwt-access") && Cookies.get("jwt-refresh") ? (
+        <nav className="col-md-4">
         <LoggedNavigation />
+        </nav>
       ) : (
+        <nav className="col-md-2">
         <NotLoggedNavigaion />
-      )}
-    </nav>
+      </nav>
+      )
   );
 };
 

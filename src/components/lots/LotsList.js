@@ -3,7 +3,7 @@ import { LotItem } from "./LotItem";
 import LotsPagination from "./LotsPagination";
 import {fetchLots as getLots } from '../../lib/lot_api';
 
-export const LotsList = () => {
+export const LotsList = (props) => {
   const [lotsInfo, setLotsInfo] = useState({
     lots: [], totalCount: 1
   });
@@ -13,12 +13,15 @@ export const LotsList = () => {
   }
 
   useEffect(() => {
-      getLots(currentPage).then(lots => {
-          setLotsInfo({lots: lots.results, totalCount: lots.count});
+      getLots(currentPage, props.filter).then(lots => {
+          if(lots.length === 0){
+            setLotsInfo({lots: [], totalCount: 0});
+          }
+          else setLotsInfo({lots: lots.results, totalCount: lots.count});
       });
-    }, [currentPage]);
+    }, [currentPage, props.filter]);
 
-    return <div className="pb-5 pt-5">
+    return (lotsInfo.totalCount > 0 ? <div className="pb-5 pt-5">
     <table className="table table-hover table-responsive table-striped">
     <thead>
       <tr>
@@ -33,8 +36,6 @@ export const LotsList = () => {
     {lotsInfo.lots.map(l => <LotItem key={l.id} lot={l}/>)}
     </tbody>
   </table>
-  
   <LotsPagination currentPage={currentPage} totalCount={lotsInfo.totalCount} pageSize={1} onPageChange={page => onLotsChange(page)} />
-  </div>
-  ;
+  </div> : <div className="alert alert-danger text-danger">No lots found.</div>);
 }

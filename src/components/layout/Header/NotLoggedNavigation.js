@@ -1,27 +1,12 @@
 import { NavLink } from "react-router-dom";
 
-import classes from "./MainNavigation.module.css";
-
 const NotLoggedNavigaion = () => {
   return (
-    <ul>
-      <li>
-        <NavLink
-          to="/login"
-          className={(navData) => (navData.isActive ? classes.active : "")}
-        >
-          Login
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/register"
-          className={(navData) => (navData.isActive ? classes.active : "")}
-        >
-          Register
-        </NavLink>
-      </li>
-    </ul>
+    <div className="row">
+    <NavLink to="/login" className="btn col-lg-5 btn-outline-primary text-light">Sign in</NavLink>
+    <div className="col-lg-2"></div>
+    <NavLink to="/register" className="btn col-lg-5 btn-outline-warning text-light">Sign up</NavLink>
+    </div>
   );
 };
 

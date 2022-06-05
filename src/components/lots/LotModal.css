@@ -1,0 +1,21 @@
+.details {
+  text-align: center;
+}
+
+.lotHeader span,
+img {
+  margin-left: 10px;
+}
+
+#lotowner {
+  margin-left: 0 !important;
+}
+.modalPayment{
+  max-width: 35px;
+}
+.modalCurrency{
+  text-align: center; font-size: 1.3em; font-weight: bold;
+}
+.buttons{
+  justify-content: space-evenly;
+}
