@@ -7,7 +7,8 @@ export default function AppealForm(props) {
     const sellerEmailRef = useRef();
     const receiptRef = useRef();
     const [isAppealCreated, setIsAppealCreated] = useState(false);
-    const createAppeal = () => {
+    const createAppeal = (e) => {
+        e.preventDefault();
         let decodedToken = jwt_decode(Cookies.get('jwt-access'));
         let buyerEmail = decodedToken.user_id;
         let data = new FormData();
@@ -28,14 +29,14 @@ export default function AppealForm(props) {
     <p className="d-block text-center"><small>Write an appeal only in case if you was scammed. The
         tech support will review your appeal and report as soon as possible.</small></p>
     <div className="mb-3">
-      <label for="sellerEmail" className="form-label"><b>1.</b>Please, write the email of seller</label>
+      <label htmlFor="sellerEmail" className="form-label"><b>1.</b>Please, write the email of seller</label>
       <input type="email" className="form-control" placeholder='Example: evil_scammer@gmail.com' 
       id="sellerEmail" aria-describedby="emailHelp" ref={sellerEmailRef} />
     </div>
     <div className="mb-3">
-      <label for="receipt" className="form-label"><b>2.</b>Please, attach your receipt of payment of fiat.
+      <label htmlFor="receipt" className="form-label"><b>2.</b>Please, attach your receipt of payment of fiat.
        By these means, we will be sure that you got scammed.</label>
-        <input class="form-control form-control-lg" id="receipt" type="file" ref={receiptRef} />
+        <input className="form-control form-control-lg" id="receipt" type="file" ref={receiptRef} />
     </div>
     <button type="submit" className="btn btn-outline-primary">Submit</button>
   </form>;

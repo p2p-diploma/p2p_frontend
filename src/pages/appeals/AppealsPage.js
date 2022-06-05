@@ -7,7 +7,7 @@ export default function AppealsPage() {
       <h3 className="text-right"><button className="btn btn-outline-danger p-2">Sign out</button></h3>
       <h1 className="display-6 text-center text-light">Appeals</h1>
       <div className='mb-4'>
-        <AppealForm />
+        <AppealForm transactionId='1fdfb686-34d2-4112-919c-5519fd42227d' />
       </div>
       <div className="container">
         <AppealsList />

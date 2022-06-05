@@ -19,7 +19,7 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Navigate replace to="/quotes" />} />
+        <Route path="/" element={<Navigate replace to="/lots" />} />
         <Route path="/user" element={<Wallet />} />
         <Route path="/appeals" element={<AppealsPage />}/>
         <Route path="/login" element={<Login />} />
