@@ -56,15 +56,15 @@ export default function AppealModal(props) {
                             <h4 className="mb-3">Transaction details: </h4>
                             <div className="row">
                                 <h5 className="col-md-6">Created at: </h5>
-                                <div className="col-md-6 lead">27 May 2022 13:59</div>
+                                <div className="col-md-6 lead">{appeal.transaction.createdAt}</div>
                             </div>
                             <div className="row">
                                 <h5 className="col-md-6">Updated at: </h5>
-                                <div className="col-md-6 lead" >08 May 2022 9:00</div>
+                                <div className="col-md-6 lead" >{appeal.transaction.updatedAt}</div>
                             </div>
                             <div className="row">
                                 <h5 className="col-md-6">Status: </h5>
-                                <div className="col-md-6 lead">Pending</div>
+                                <div className="col-md-6 lead">{appeal.transaction.status}</div>
                             </div>
                         </div>
                     </div>

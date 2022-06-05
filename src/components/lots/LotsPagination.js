@@ -1,5 +1,5 @@
 import { usePagination } from "../../hooks/usePagination";
-export default function AppealsPagination(props) {
+export default function LotsPagination(props) {
     const { onPageChange, totalCount, siblingCount = 1, currentPage, pageSize } = props;
     const paginationRange = usePagination({ totalCount, pageSize, siblingCount, currentPage });
     // If there are less than 2 times in pagination range we shall not render the component
@@ -19,21 +19,21 @@ export default function AppealsPagination(props) {
     return (
         <ul className="pagination justify-content-center">
 
-        {currentPage > 1 && <li className="page-item bg-dark" onClick={onPrevious} aria-label="Previous">
-          <button className="page-link bg-dark"><span aria-hidden="true">&laquo;</span></button>
+        {currentPage > 1 && <li className="page-item bg-light" onClick={onPrevious} aria-label="Previous">
+          <button className="page-link"><span aria-hidden="true">&laquo;</span></button>
         </li>}
 
         {paginationRange.map(pageNumber => {
           return (
             <li onClick={() => onPageChange(pageNumber)} key={pageNumber} 
-            className={'page-item ' + (pageNumber === currentPage ? 'active' : '')}>
-              <span className="page-link bg-dark">{pageNumber}</span>
+            className={'page-item bg-light' + (pageNumber === currentPage ? 'active' : '')}>
+              <span className="page-link">{pageNumber}</span>
             </li>
           );
         })}
 
-        {currentPage < lastPage && <li className="page-item" onClick={onNext}>
-          <button className="page-link bg-dark" aria-label="next"><span aria-hidden="true">&raquo;</span></button>
+        {currentPage < lastPage && <li className="page-item bg-light" onClick={onNext}>
+          <button className="page-link" aria-label="next"><span aria-hidden="true">&raquo;</span></button>
         </li>}
       </ul>
     );

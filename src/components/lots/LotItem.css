@@ -1,0 +1,6 @@
+.lotItem .price {
+    font-size: 1.3em;
+}
+.lotItem .payment{
+    max-width: 30px;
+}

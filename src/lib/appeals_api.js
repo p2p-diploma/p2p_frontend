@@ -1,5 +1,11 @@
 import "dotenv/config";
 
+async function createAppeal(data) {
+    var response = await fetch(`${process.env.REACT_APP_BACKEND_API}/appeals`, 
+    {method: 'POST', credentials: 'include', body: data});
+    return response.ok;
+}
+
 async function fetchAppeals(page) {
     var response = await fetch(`${process.env.REACT_APP_BACKEND_API}/appeals?page=${page}`, {credentials: 'include'});
     return await response.json();
@@ -22,4 +28,4 @@ async function deleteAppeal(id) {
     return response.ok;
 }
 
-export {fetchAppeals, fetchReceiptById, fetchAppealById, fetchAppealsCount, deleteAppeal };
+export {fetchAppeals, fetchReceiptById, fetchAppealById, fetchAppealsCount, deleteAppeal, createAppeal };

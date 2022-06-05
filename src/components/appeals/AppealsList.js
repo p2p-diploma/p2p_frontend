@@ -3,7 +3,6 @@ import AppealRow from "./AppealRow";
 import AppealModal from './AppealModal';
 import { fetchAppeals, fetchAppealsCount } from '../../lib/appeals_api';
 import AppealsPagination from "./AppealsPagination";
-import reactDom from "react-dom";
 export default function AppealsList() {
   const [appealsInfo, setAppealsInfo] = useState({
     appeals: [], totalCount: 1
@@ -16,7 +15,7 @@ export default function AppealsList() {
   useEffect(() => {
     fetchAppealsCount().then(count => {
       fetchAppeals(currentPage).then(appeals => {
-          setAppealsInfo({appeals: appeals, selectedPage: currentPage, totalCount: count});
+          setAppealsInfo({appeals: appeals, totalCount: count});
       });
     });
     }, [currentPage]);
@@ -40,7 +39,7 @@ export default function AppealsList() {
         </tbody>
       </table>
       {appealsInfo.appeals.map(a => <AppealModal key={a.id} id={a.id}/>)}
-      <AppealsPagination onPageChange={page => onAppealsChange(page)} currentPage={appealsInfo.selectedPage} totalCount={appealsInfo.totalCount}
+      <AppealsPagination onPageChange={page => onAppealsChange(page)} currentPage={currentPage} totalCount={appealsInfo.totalCount}
       pageSize={5}  />
     </Fragment>
   );

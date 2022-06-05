@@ -21,3 +21,13 @@ export async function getAllQuotes() {
 
   return transformedQuotes;
 }
+
+
+export async function fetchLots() {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/lot`, {credentials: 'include'});
+  return await response.json();
+}
+export async function fetchLotsCount(){
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/lot/count`, {credentials: 'include'});
+  return parseInt(response.text());
+}
