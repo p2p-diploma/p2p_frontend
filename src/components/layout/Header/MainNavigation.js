@@ -6,13 +6,15 @@ console.log(Cookies.get("jwt-refresh"));
 
 const MainNavigation = () => {
   return (
-    <nav className="col-md-2">
-      {Cookies.get("jwt-access") && Cookies.get("jwt-refresh") ? (
+      Cookies.get("jwt-access") && Cookies.get("jwt-refresh") ? (
+        <nav className="col-md-4">
         <LoggedNavigation />
+        </nav>
       ) : (
+        <nav className="col-md-2">
         <NotLoggedNavigaion />
-      )}
-    </nav>
+      </nav>
+      )
   );
 };
 
