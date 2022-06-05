@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import useHttp from "../../../hooks/use-http";
 import { logout } from "../../../lib/login_api";
 
-import classes from "./MainNavigation.module.css";
-
 const LoggedNavigaion = () => {
   const { sendRequest, status, error } = useHttp(logout);
   const navigate = useNavigate();
@@ -18,38 +16,18 @@ const LoggedNavigaion = () => {
     if (status === "completed" && error !== null) {
       console.log(error);
     }
-  }, [status, navigate]);
+  }, [status, navigate, error]);
 
   const logoutHandler = () => {
-    sendRequest();
+    sendRequest().then(r => window.location.reload());
   };
 
   return (
-    <ul>
-      <li>
-        <NavLink
-          to="/lots"
-          className={(navData) => (navData.isActive ? classes.active : "")}
-        >
-          Lots
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/create-lot"
-          className={(navData) => (navData.isActive ? classes.active : "")}
-        >
-          New Quote
-        </NavLink>
-      </li>
-      <li>
-        <a role='button' className="btn btn-danger btn-large"
-          onClick={logoutHandler}
-        >
-          Logout
-        </a>
-      </li>
-    </ul>
+    <div className="row">
+        <NavLink to="/lots" className="btn col-lg-5 btn-outline-primary text-light">Lots</NavLink>
+    <div className="col-lg-2"></div>
+        <button className="btn col-lg-5 btn-danger text-light" onClick={logoutHandler}>Logout</button>
+    </div>
   );
 };
 

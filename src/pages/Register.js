@@ -12,13 +12,13 @@ const Register = () => {
 
   useEffect(() => {
     if (status === "completed" && error === null) {
-      navigate("/login");
+      navigate("/new_wallet");
     }
 
     if (status === "completed" && error !== null) {
       console.log(error);
     }
-  }, [status, navigate]);
+  }, [status, navigate, error]);
 
   const registerHandler = (registerData) => {
     sendRequest(registerData);
