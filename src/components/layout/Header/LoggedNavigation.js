@@ -43,8 +43,7 @@ const LoggedNavigaion = () => {
         </NavLink>
       </li>
       <li>
-        <a
-          className={(navData) => (navData.isActive ? classes.active : "")}
+        <a role='button' className="btn btn-danger btn-large"
           onClick={logoutHandler}
         >
           Logout

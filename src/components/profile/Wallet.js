@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import Cookies from "js-cookie";
 import { useCallback } from 'react/cjs/react.development';
+import WalletTransferDropdown from './WalletTransferDropdown';
 
 export default function Wallet() {
     const [eth, setETH] = useState(0);
@@ -12,7 +13,7 @@ export default function Wallet() {
     const [email, setEmail] = useState('');
     const [fullname, setFullName] = useState('');
     const [privateKey, setPrivateKey] = useState('');
-    const [walletId, setWalletId] = useState();
+    const [walletId, setWalletId] = useState('');
 
     const fetchUserData = useCallback(async (email) => {
         const responses = await Promise.all([
@@ -50,7 +51,7 @@ export default function Wallet() {
     }
 
     return (
-        <div id="profile" className='text-center bg-light'>
+        <div id="profile" className='text-center bg-light col-3 center-block'>
             <UserInfo email={email} fullName={fullname} />
             <div className="title erc20title">
                 <img src="/erc20.png" alt='' className='img-fluid' />
@@ -62,22 +63,30 @@ export default function Wallet() {
             <div id="eth">
                 <div className="el"><span className="value">{eth}</span> ETH</div>
                 <div className="addressinfo mt-3">
-                    <h4 mt-2>Address:</h4>
+                    <h4 className="mt-2">Address:</h4>
                     <p id="address" className='lead'>{address}</p>
                 </div>
                 <div className="addressinfo mt-3 pb-5">
                     <h4>Private key</h4>
                     <div className="el">
                         <button type="button" className='btn btn-outline-warning p-2' onClick={fetchPrivateKey}
-                            data-bs-toggle="collapse" data-bs-target="#privateKeyCollapse" aria-expanded="false"
+                            data-bs-toggle="modal" data-bs-target="#privateKeyCollapse" aria-expanded="false"
                             aria-controls="privateKeyCollapse">Show
                         </button>
                     </div>
-                    <div class="collapse" id="privateKeyCollapse" className='text-center text-info'>
-                        <b>{privateKey}</b>
+                    <div className="modal fade" id='privateKeyCollapse' tabindex="-1">
+                        <div className="modal-dialog">
+                            <h3 className='modal-header text-primary bg-light'>Your private key</h3>
+                            <div className="modal-content">
+                                <div className="modal-body privateKey">
+                                    {privateKey}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <WalletTransferDropdown walletId={walletId} />
         </div>
     )
 }

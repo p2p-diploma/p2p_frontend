@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { LotsList } from "../../components/lots/LotsList";
-import LotsFilter from "./LotsFilter";
+import LotsFilter from "../../components/lots/LotsFilter";
 
 export default function LotsPage(){
   return (

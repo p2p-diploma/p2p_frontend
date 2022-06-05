@@ -21,14 +21,6 @@ body {
     color: #118dff;
 }
 
-#profile {
-    max-width: 50%;
-    position: relative;
-    left: 25%;
-    text-align: center;
-    background-color: white;
-}
-
 .changeuserinfo {
     border: none;
     color: white;
@@ -70,4 +62,7 @@ body {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+}
+.privateKey{
+    font-size: 12px;
 }

@@ -26,7 +26,6 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         <Route path="/lots" element={<LotsPage />} />
-        <Route path="/lots/:lotId" element={<Lots />} />
 
         <Route path="/quotes" element={<AllQuotes />} />
         <Route path="/quotes/:quoteId" element={<QuoteDetail />}>

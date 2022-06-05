@@ -21,3 +21,9 @@ export async function getAllQuotes() {
 
   return transformedQuotes;
 }
+
+
+export async function fetchLots(page) {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND_API}/lot?page=${page}`);
+  return await response.json();
+}
