@@ -4,11 +4,11 @@ const TradeHeader = (props) => {
   }
 
   return (
-    <div className="d-flex justify-content-between align-items-center mx-auto">
-      <div className="fs-2 fw-bold row col-md-2">
+    <div className="d-flex justify-content-between align-items-center mx-auto col-md-10">
+      <div className="fs-2 fw-bold row">
         Buy {props.lotData.crypto_currency.toUpperCase()}
       </div>
-      <div className="d-flex col-md-5 fs-5">
+      <div className="d-flex fs-5">
         <div className="fw-bold">Established price</div>
         <div>
           : {props.lotData.price} {props.lotData.fiat_currency.toUpperCase()}{" "}

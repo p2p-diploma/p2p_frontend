@@ -3,8 +3,10 @@ import { TradeTimer } from "./TradeTimer";
 
 const TradeRightMenu = (props) => {
   return (
-    <div className="d-flex col-md-6 flex-column">
-      <TradeTimer targetDate={props.targetDate} />
+    <div className="d-flex col-md-6 flex-column justify-content-around">
+      {props.tradeData.status === "ON_PAYMENT_WAIT" && (
+        <TradeTimer targetDate={props.targetDate} />
+      )}
       <div
         className="d-flex flex-column justify-content-start chat"
         style={{ height: "400px", width: "300px", maxWidth: "100%" }}

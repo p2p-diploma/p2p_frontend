@@ -77,13 +77,15 @@ const TradeLeftMenu = (props) => {
             }
           })}
         </div>
-        <button
-          className="btn btn-primary"
-          onClick={onApprove}
-          disabled={props.tradeData.initiator === my_email ? false : true}
-        >
-          Approve
-        </button>
+        {props.tradeData.status !== "SUCCESS" && (
+          <button
+            className="btn btn-primary"
+            onClick={onApprove}
+            disabled={props.tradeData.initiator === my_email ? false : true}
+          >
+            Approve
+          </button>
+        )}
       </div>
     </div>
   );
