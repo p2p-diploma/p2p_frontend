@@ -2,8 +2,10 @@ import React from "react";
 import reactDom from "react-dom";
 import { useRef, useState } from "react";
 import './LotModal.css';
+import { useNavigate } from "react-router-dom";
 function LotModal(props) {
     const currency = props.lot.crypto_currency === 'eth' ? ' ETH' : ' ERC20';
+    const nav = useNavigate();
     const [currencyStatus, setCurrencyStatus] = useState({currency: 0, isOutbound: false, message: ''});
     const price = props.lot.price;
     const minLimit = props.lot.min_limit;
@@ -15,6 +17,31 @@ function LotModal(props) {
             setCurrencyStatus({currency: 0, isOutbound: true, message: 'Amount of KZT is out of limits'});
         }
         else setCurrencyStatus({currency: amount / price, isOutbound: false, message: ''});
+    }
+
+
+    const onGoToTrade = async () => {
+        let t = {
+            seller_wallet: props.lot.initiator_wallet,
+            seller_email: props.lot.lot_initiator_email,
+            amount: currencyStatus.currency,
+            price: price,
+            crypto_type: props.lot.crypto_currency,
+            fiat_type: "kzt",
+            sell_type: props.lot.lot_type
+        };
+        
+        let responses = await Promise.all([
+            fetch(`http://localhost:3227/lot/detail/${props.lot.id}`, 
+            {method: "PATCH", credentials: 'include', body: JSON.stringify({
+                supply: currencyStatus.currency
+              }), headers: {'Content-Type': 'application/json'}}),
+            fetch('http://localhost:3227/trade', {method: "POST", credentials: 'include', body: JSON.stringify(t),
+            headers: {'Content-Type': 'application/json'}})]);
+
+            let transaction = await responses[1].json();
+            
+            nav(`/lots/${props.lot.id}/${transaction.id}`);
     }
 
     const modal = (
@@ -79,7 +106,7 @@ function LotModal(props) {
                     </div>
                     <div className="modal-footer buttons d-flex pb-4">
                         <button type="submit" className="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" className="btn btn-outline-primary">Go to trade</button>
+                        <button onClick={onGoToTrade} type="submit" className="btn btn-outline-primary">Go to trade</button>
                     </div>
                 </div>
             </div>

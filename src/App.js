@@ -18,7 +18,6 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Navigate replace to="/lots" />} />
-        <Route path="/user" element={<Wallet />} />
         <Route path="/appeals" element={<AppealsPage />} />
         <Route path="/new_wallet" element={<WalletOption />} />
         <Route path="/appeals" element={<AppealsPage />}/>
@@ -27,22 +26,6 @@ function App() {
         <Route path="/chat" element={<Chat />}/>
         <Route path="/lots" element={<LotsPage />} />
         <Route path="/lots/:lotId/:tradeId" element={<TradePage />} />
-
-        <Route path="/quotes" element={<AllQuotes />} />
-        <Route path="/quotes/:quoteId" element={<QuoteDetail />}>
-          <Route
-            path=""
-            element={
-              <div className="centered">
-                <Link className="btn--flat" to={`comments`}>
-                  Load Comments
-                </Link>
-              </div>
-            }
-          />
-          <Route path={`comments`} element={<Comments />} />
-        </Route>
-        <Route path="/new-quote" element={<NewQuote />} />
         <Route path="/lots/create" element={<LotForm />} />
 
         <Route path="*" element={<NotFound />} />

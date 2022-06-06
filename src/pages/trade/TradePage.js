@@ -20,6 +20,7 @@ export default function TradePage(props) {
     getLotDetail(lotId).then((data) => setLotData(data));
   }, [lotId]);
 
+
   return (
     <main className="container mt-5">
       <TradeHeader lotData={lotData} />
