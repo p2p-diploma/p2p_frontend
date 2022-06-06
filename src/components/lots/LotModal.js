@@ -28,7 +28,8 @@ function LotModal(props) {
             price: price,
             crypto_type: props.lot.crypto_currency,
             fiat_type: "kzt",
-            sell_type: props.lot.lot_type
+            sell_type: props.lot.lot_type,
+            lot_id: props.lot.id
         };
         
         let responses = await Promise.all([

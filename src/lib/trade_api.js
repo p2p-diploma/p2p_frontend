@@ -34,3 +34,23 @@ export async function approveTrade(tradeId) {
 
   return data;
 }
+
+
+export async function cancelTrade(tradeId) {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND_API}/trade/cancel_transaction/${tradeId}`,
+    {
+      method: "POST",
+      withCredenitals: true,
+      credentials: "include",
+    }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not cancel");
+  }
+
+  return data;
+}

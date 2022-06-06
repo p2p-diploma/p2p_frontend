@@ -66,6 +66,9 @@ const RegisterForm = (props) => {
               required
             />
           </div>
+          <div className={classes.control}>
+            <p className="text-danger">{props.error}</p>
+          </div>
           <div className={classes.actions}>
             <button onClick={finishEnteringHandler} className="btn">
               Register

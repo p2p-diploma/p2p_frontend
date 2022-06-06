@@ -12,7 +12,7 @@ const Register = () => {
 
   useEffect(() => {
     if (status === "completed" && error === null) {
-      navigate("/new_wallet");
+      navigate('/new_wallet');
     }
 
     if (status === "completed" && error !== null) {
@@ -21,13 +21,15 @@ const Register = () => {
   }, [status, navigate, error]);
 
   const registerHandler = (registerData) => {
-    sendRequest(registerData);
+    sendRequest(registerData).then(r => {
+      window.location.href = '/new_wallet';
+    });
   };
 
   return (
     <RegisterForm
       isLoading={status === "pending"}
-      onRegister={registerHandler}
+      onRegister={registerHandler} error={error}
     />
   );
 };

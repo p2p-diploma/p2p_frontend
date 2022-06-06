@@ -2,24 +2,44 @@ import PaymentDropdown from "./PaymentDropdown";
 import PaymentWindow from "./PaymentWindow";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
-import { approveTrade } from "../../lib/trade_api";
+import { approveTrade, cancelTrade } from "../../lib/trade_api";
 const payload = Cookies.get("jwt-access");
 const my_email = payload ? jwt_decode(payload)["user_id"] : "";
 
 const TradeLeftMenu = (props) => {
-  console.log(props.tradeData);
-  console.log(my_email);
-
   const onApprove = () => {
     approveTrade(props.tradeData.id);
+    window.location.reload();
   };
+
+  const onCancel = () => {
+    cancelTrade(props.tradeData.id);
+    window.location.reload();
+  }
+
+  const reformatStatus = (status) => {
+    switch (status) {
+      case "ON_PAYMENT_WAIT":
+        return "Waiting for fiat payment"
+      case "ON_APPROVE":
+        return "Waiting for seller to approve"
+      case "SUCCESS":
+        return "Transfer made successfully"
+      case "EXPIRED":
+        return "Trade time expired"
+      case "CANCELED":
+        return "Trade cancelled"
+      default:
+        return ""
+    }
+  }
 
   return (
     <div className="d-flex flex-column col-md-6 align-items-center justify-content-around">
       <div className="d-flex flex-column">
         <div className="d-flex fs-5">
           <div className="fw-bold">Trade Status</div>
-          <div>: {props.tradeData.status} </div>
+          <div>: {reformatStatus(props.tradeData.status)} </div>
         </div>
         <div className="d-flex fs-5">
           <div className="fw-bold">You will pay</div>
@@ -80,13 +100,21 @@ const TradeLeftMenu = (props) => {
             })}
           </PaymentDropdown>
         </div>
-        {props.tradeData.status !== "SUCCESS" && (
+        {props.tradeData.status !== "SUCCESS" && props.tradeData.status !== "CANCELED" && props.tradeData.status !== "EXPIRED" &&(
           <button
             className="btn btn-primary"
             onClick={onApprove}
             disabled={props.tradeData.initiator === my_email ? false : true}
           >
             Approve
+          </button>
+        )}
+        {props.tradeData.status === "ON_PAYMENT_WAIT" && props.tradeData.buyer_email === my_email &&(
+          <button
+            className="btn btn-danger"
+            onClick={onCancel}
+          >
+            Cancel Trade
           </button>
         )}
       </div>

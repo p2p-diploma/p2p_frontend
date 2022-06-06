@@ -21,10 +21,10 @@ const Login = () => {
   }, [status, navigate, error]);
 
   const loginHandler = (loginData) => {
-    sendRequest(loginData).then(r => window.location.href = '/lots');
+    sendRequest(loginData);
   };
 
-  return <LoginForm isLoading={status === "pending"} onLogin={loginHandler} />;
+  return <LoginForm isLoading={status === "pending"} onLogin={loginHandler} error={error} />;
 };
 
 export default Login;

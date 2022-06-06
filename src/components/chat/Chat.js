@@ -1,7 +1,8 @@
 import jsCookie from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { useRef, useEffect, useState } from 'react';
-
+const payload = jsCookie.get("jwt-access");
+const my_email = payload ? jwtDecode(payload)["user_id"] : "";
 const signalR = require('@microsoft/signalr');
 export default function Chat(props) {
     const messageRef = useRef();
@@ -9,14 +10,14 @@ export default function Chat(props) {
 
     const onMessage = () => {
         let message = messageRef.current.value;
+        alert(props.transactionId);
         sender.hubConnection.invoke("AddToChat", props.transactionId);
-        sender.hubConnection.invoke("Send", message, sender);
+        sender.hubConnection.invoke("Send", message, my_email);
     }
 
 
     useEffect(() => {
-        let email = jwtDecode(jsCookie.get('jwt-access')['user_id']);
-        alert(email);
+        let email = my_email;
         const connection = new signalR.HubConnectionBuilder()
             .withUrl("http://localhost:3227/chat")
             .build();
