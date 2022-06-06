@@ -10,7 +10,7 @@ import Layout from "./components/layout/Layout";
 import AppealsPage from "./pages/appeals/AppealsPage";
 import TradePage from "./pages/trade/TradePage";
 import WalletOption from "./components/authentication/Wallet/WalletOption";
-import LotForm from './components/lots/LotForm';
+import LotForm from "./components/lots/LotForm";
 import Chat from "./components/chat/Chat";
 
 function App() {
@@ -20,10 +20,10 @@ function App() {
         <Route path="/" element={<Navigate replace to="/lots" />} />
         <Route path="/appeals" element={<AppealsPage />} />
         <Route path="/new_wallet" element={<WalletOption />} />
-        <Route path="/appeals" element={<AppealsPage />}/>
+        <Route path="/appeals" element={<AppealsPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/chat" element={<Chat />}/>
+        <Route path="/chat" element={<Chat />} />
         <Route path="/lots" element={<LotsPage />} />
         <Route path="/lots/:lotId/:tradeId" element={<TradePage />} />
         <Route path="/lots/create" element={<LotForm />} />

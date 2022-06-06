@@ -17,7 +17,7 @@ const TradeBody = (props) => {
   return (
     <div className="d-flex justify-content-between align-items-center mx-auto">
       <TradeLeftMenu lotData={props.lotData} tradeData={props.tradeData} />
-      <TradeRightMenu targetDate={targetDate} transactionId={props.tradeData.id} email={props.tradeData.seller_email} />
+      <TradeRightMenu tradeData={props.tradeData} targetDate={targetDate} transactionId={props.tradeData.id} email={props.tradeData.seller_email} />
     </div>
   );
 };

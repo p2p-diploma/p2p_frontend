@@ -3,6 +3,8 @@ import jwt_decode from 'jwt-decode';
 import Cookies from "js-cookie";
 import {createWallet, loadWallet} from '../../../lib/wallets_api';
 import { useNavigate } from "react-router-dom";
+const payload = Cookies.get("jwt-access");
+const email = payload ? jwt_decode(payload)["user_id"] : "";
 export default function WalletOption(props) {
     const navigate = useNavigate();
     const [walletStatus, setWalletStatus] = useState({error: false, message: ''});
@@ -21,13 +23,15 @@ export default function WalletOption(props) {
         }).catch(err => setWalletStatus({error: true, message: "Failed to create wallet"}));
     }
 
-    const onLoadWallet = () => {
+    const onLoadWallet = (e) => {
+        e.preventDefault();
+        alert(email);
         let privateKey = String(document.getElementById('importedPrivateKey').value);
         if(privateKey.length === 0) 
             setWalletStatus({error: true, message: "Private key is empty"});
 
         let user = {
-            email: jwt_decode(Cookies.get('jwt-access'))['user_id'],
+            email: email,
             password: props.password,
             privateKey: privateKey
         };
