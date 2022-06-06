@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import TradeLeftMenu from "./TradeLeftMenu";
 import TradeRightMenu from "./TradeRightMenu";
 
@@ -10,9 +12,11 @@ const TradeBody = (props) => {
     return <></>;
   }
 
-  const FIFTEEN_MINS_IN_MS = 15 * 60 * 1000;
+  const EXPIRATION_MINS_IN_MS =
+    parseInt(`${process.env.REACT_APP_EXPIRATION_MINUTES}`) * 60 * 1000;
+
   const targetDate =
-    new Date(props.tradeData.created_at).getTime() + FIFTEEN_MINS_IN_MS;
+    new Date(props.tradeData.created_at).getTime() + EXPIRATION_MINS_IN_MS;
 
   return (
     <div className="d-flex justify-content-between align-items-center mx-auto">
